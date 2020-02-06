@@ -30,7 +30,7 @@ def post_create(request):
 		instance = form.save(commit=False)
 		instance.save()
 		messages.success(request, "Successfully Created")
-		return HttpResponseRedirect(instance.get_absolute_url())
+		return HttpResponseRedirect(instance.get_obsolute_url())
 	else:
 		messages.error(request, "Not successfully Created")
 	content = {
@@ -58,7 +58,7 @@ def post_update(request, id=None):
 		instance = form.save(commit=False)
 		instance.save()
 		messages.success(request, "<a href='#'>Updated </a>Successfully", extra_tags='html_safe')
-		return HttpResponseRedirect(instance.get_absolute_url())
+		return HttpResponseRedirect(instance.get_obsolute_url())
 	content = {
 	"title": instance.title,
 	"instance": instance,
