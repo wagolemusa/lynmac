@@ -25,7 +25,7 @@ SECRET_KEY = 'c8=uy#sofm9#wu=$fg+cz0u6l8(p3b_u^h26&9i()*sw8t-d!1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['wagole.pythonanywhere.com']
+ALLOWED_HOSTS = ['wagole.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
