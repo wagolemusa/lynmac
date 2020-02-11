@@ -3,15 +3,27 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect, Http404
+from django.utils import timezone
+from django.db.models import Q
 from .models import Post
 from .forms import PostForm
 
 # Create your views here.
 def post_list(request):
 
-	qureyset_list = Post.objects.all()#.order_by("-timestamp")
-	
-	paginator = Paginator(qureyset_list, 6)
+	qureyset_list = Post.objects.active()#.order_by("-timestamp")
+	if request.user.is_staff or request.user.is_superuser:
+		qureyset_list = Post.objects.all()
+
+	query = request.GET.get("q")
+	if query:
+		qureyset_list = qureyset_list.filter(
+			Q(title__icontains=query) | 
+			Q(content__icontains=query) 
+			# Q(price__icontains=query)|
+			# Q(location__icontains=query)
+			).distinct()
+	paginator = Paginator(qureyset_list, 3)
 	page = request.GET.get('page')
 	querySet = paginator.get_page(page)
 
@@ -40,6 +52,9 @@ def post_create(request):
 
 def post_detail(request, id=None):
 	instance = get_object_or_404(Post, id=id)
+	if instance.publish > timezone.now().date() or instance.draft:
+		if not request.user.is_staff or not request.user.is_superuser:
+			raise Http404
 	share_string = quote_plus(instance.content)
 	contex = {
 		"title":instance.title,
@@ -76,3 +91,5 @@ def post_delete(request, id=None):
 	return redirect("posts:list")
 
 
+def about(request):
+	return render (request, "about.html")
