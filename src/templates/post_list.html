@@ -35,6 +35,64 @@
 {% endfor %}
 
 
+<!-- Card -->
+<div class="card booking-card">
+
+  <!-- Card image -->
+  <div class="view overlay">
+
+    {% if obj.image %}
+        <img src="{{ obj.image.url }}" class="img-responsive" width="350" height="250" />
+    {% endif %}
+    <a href="#!">
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <!-- Card content -->
+  <div class="card-body">
+
+    <!-- Title -->
+    {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
+        <h3><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a>
+            <small>{{ obj.timestamp|timesince }} ago</small></h3>    <!-- Data -->
+    <ul class="list-unstyled list-inline rating mb-0">
+      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"> </i></li>
+      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+      <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text"></i></li>
+      <li class="list-inline-item"><p class="text-muted">4.5 (413)</p></li>
+    </ul>
+    <p class="mb-2">$ • American, Restaurant</p>
+    <!-- Text -->
+    <p class="card-text">  {{ obj.content|linebreaks|truncatechars:130 }}</p>
+</p>
+    <hr class="my-4">
+    <p class="lead"><strong>{{ obj.location}}</strong></p>
+    <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
+      <li class="list-inline-item mr-0">
+        <div class="chip mr-0">For{{ obj.catagories }}</div>
+      </li>
+      <li class="list-inline-item mr-0">
+        <div class="chip deep-purple white-text mr-0">{{ obj.beds }}</div>
+      </li>
+      <li class="list-inline-item mr-0">
+        <div class="chip mr-0"></div>
+      </li>
+      <li class="list-inline-item mr-0">
+        <div class="chip mr-0">{{obj.bath }} Bath</div>
+      </li>
+    </ul>
+    <!-- Button -->
+    <a href="#" class="btn btn-flat deep-purple-text p-1 mx-0 mb-0">Button</a>
+
+  </div>
+
+</div>
+<!-- Card -->
+
+
 <div class="pagination">
     <span class="step-links">
         {% if object_list.has_previous %}
