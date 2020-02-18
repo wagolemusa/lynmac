@@ -10,7 +10,6 @@ from .forms import PostForm
 
 # Create your views here.
 def post_list(request):
-
 	qureyset_list = Post.objects.active()#.order_by("-timestamp")
 	if request.user.is_staff or request.user.is_superuser:
 		qureyset_list = Post.objects.all()
@@ -19,9 +18,9 @@ def post_list(request):
 	if query:
 		qureyset_list = qureyset_list.filter(
 			Q(title__icontains=query) | 
-			Q(content__icontains=query) 
-			# Q(price__icontains=query)|
-			# Q(location__icontains=query)
+			Q(content__icontains=query)|
+			Q(price__icontains=query)|
+			Q(location__icontains=query)
 			).distinct()
 	paginator = Paginator(qureyset_list, 3)
 	page = request.GET.get('page')
@@ -56,10 +55,20 @@ def post_detail(request, id=None):
 		if not request.user.is_staff or not request.user.is_superuser:
 			raise Http404
 	share_string = quote_plus(instance.content)
+
+	qureyset_list = Post.objects.active()#.order_by("-timestamp")
+	if request.user.is_staff or request.user.is_superuser:
+		qureyset_list = Post.objects.all()
+	paginator = Paginator(qureyset_list, 3)
+	page = request.GET.get('page')
+	querySet = paginator.get_page(page)
+
+
 	contex = {
 		"title":instance.title,
 		"instance": instance,
 		"share_string": share_string,
+		"object_list": querySet,
 	}
 	return render(request, "post_detail.html", contex)
 	# return HttpResponse("<h1>Details All Posts</h1>")
@@ -93,3 +102,43 @@ def post_delete(request, id=None):
 
 def about(request):
 	return render (request, "about.html")
+
+
+# List all properties 
+def property_view(request):
+	qureyset_list = Post.objects.active()#.order_by("-timestamp")
+	if request.user.is_staff or request.user.is_superuser:
+		qureyset_list = Post.objects.all()
+
+	query = request.GET.get("q")
+	if query:
+		qureyset_list = qureyset_list.filter(
+			Q(title__icontains=query) | 
+			Q(content__icontains=query) 
+			# Q(price__icontains=query)|
+			# Q(location__icontains=query)
+			).distinct()
+	paginator = Paginator(qureyset_list, 12)
+	page = request.GET.get('page')
+	querySet = paginator.get_page(page)
+
+	contex = {
+		"object_list": querySet,
+
+	}
+	return render(request, "properies.html", contex)
+
+
+def latest(request):
+	qureyset_list = Post.objects.active()#.order_by("-timestamp")
+	if request.user.is_staff or request.user.is_superuser:
+		qureyset_list = Post.objects.all()
+	paginator = Paginator(qureyset_list, 3)
+	page = request.GET.get('page')
+	querySet = paginator.get_page(page)
+
+	contex = {
+		"object_list": querySet,
+
+	}
+	return render(request, "latest.html", contex)

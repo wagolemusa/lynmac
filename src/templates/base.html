@@ -1,18 +1,36 @@
 
 {% load staticfiles %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>{% block head_title %}Properties{% endblock head_title %}</title>
-	<link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}'/>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+	 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+
+	<link rel="stylesheet" type="text/css" href='{% static "css/base.css" %}' />
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 <!-- Bootstrap core CSS -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet">
 
+<!-- 	<link rel="stylesheet" href='{% static "css/base.css" %}' />
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"> -->
+
+  <!-- <link rel="stylesheet" href='{% static "css/bootstrap.min.css" %}'> -->
+  <!-- Material Design Bootstrap -->
+  <!-- <link rel="stylesheet" href=' {% static "css/mdb.min.css" %}'> -->
+  <!-- Your custom styles (optional) -->
+  <!-- <link rel="stylesheet" href='static/css/style.css'>  -->
+
 </head>
 <body>
+
 
 
 <div id="fb-root"></div>
@@ -21,10 +39,132 @@
 
 {% include "messages_display.html" %}
 
-{% block content %}
+<!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
+    aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href='{% url "posts:list" %}'>
+          <i class=""></i> Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+    <li class="nav-item">
+        <a class="nav-link" href='{% url "posts:about" %}'>
+          <i class="fab fa-instagram"></i> About</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href='{% url "posts:all" %}'>
+          <i class="fab fa-instagram"></i> Properties</a>
+      </li>
+  
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i> Profile </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+          <a class="dropdown-item" href="#">My account</a>
+          <a class="dropdown-item" href="#">Log out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!--/.Navbar -->
+
+{% block content %}{% endblock content %}
 
 
-{% endblock content %}
+
+   <!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+  <!-- Footer Links -->
+  <div class="container-fluid text-center text-md-left">
+
+    <!-- Grid row -->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-6 mt-md-0 mt-3">
+
+        <!-- Content -->
+        <h5 class="text-uppercase">Lynmac Property</h5>
+        <p>Is an established Real estate firm in kenya registered in 2013.We specialize in Residential and commercial Properties in the areas of Property Management</p>
+
+      </div>
+      <!-- Grid column -->
+
+      <hr class="clearfix w-100 d-md-none pb-3">
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Contact Us</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">4100, 1Chekmula Buliding , 3rd Floor Kisumu</a>
+          </li>
+          <li>
+            <a href="#!">+254 726 681 845+254 735 100 856</a>
+          </li>
+          <li>
+            <a href="#!">info@lynmac.co.ke</a>
+          </li>
+          <li>
+            <a href="#!">www.lynmac.co.ke</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-md-3 mb-md-0 mb-3">
+
+        <!-- Links -->
+        <h5 class="text-uppercase">Services</h5>
+
+        <ul class="list-unstyled">
+          <li>
+            <a href="#!">Maintenance and Repairs</a>
+          </li>
+          <li>
+            <a href="#!">Letting, Rent collection</a>
+          </li>
+          <li>
+            <a href="#!">Property sales & Marketing</a>
+          </li>
+          <li>
+            <a href="#!">Property Development</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+  </div>
+  <!-- Footer Links -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="#"> xycoders.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

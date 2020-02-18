@@ -1,3 +1,18 @@
 h1{
+	color: blue;
+}
+
+
+.price{
+	font-size: 1.5em;
 	color: red;
+	padding-left: 250px;
+}
+
+.badge {
+  display: inline-block;
+  padding: .25em .10em;
+	font-size: 1.3em
+  /* font-weight: 70; */
+  /* line-height: 1; */
 }

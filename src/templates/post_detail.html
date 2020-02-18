@@ -6,16 +6,49 @@
 {% endblock head_title %}
 
 {% block content %}
-<div class="col-sm-6 col-sm-offset-3">
+<div class="container">
+<!-- <div class="col-sm-6 col-sm-offset-3"> -->
+  <div class="row">
+    <div class="col-md-9">
 
-	{% if instance.image %}
-		<img src="{{ instance.image.url }}" class="img-responsive" />
-	{% endif %}
+    <h1>{{ title }}</h1>
 
-	<h1>{{ title }} <small>{{ instance.publish }}</small></h1>
-	{{ instance.content | linebreaks }}<br/>
-	
-	<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div></p>
+     <!-- <small>{{ instance.publish }}</small></h1> -->
+
+    <div class="view overlay">
+
+		{% if instance.image %}
+			<img src="{{ instance.image.url }}" class="img-responsive" width="840px" height="500px" />
+		{% endif %}
+		</div>
+
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <b style="font-size: 1.3em; font-weight: 900;">Price</b>	
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.price }}, Ksh</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <b style="font-size: 1.3em; font-weight: 900;">Location</b>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.location }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+          <b style="font-size: 1.3em; font-weight: 900;">For</b>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.catagories }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <b style="font-size: 1.3em; font-weight: 900;">Bedrooms</b>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.beds}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+          <b style="font-size: 1.3em; font-weight: 900;">Bathroom</b>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.bath }}</span>
+          </li>
+        </ul>
+<br>
+
+		{{ instance.content | linebreaks }}
+
+		<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 
 <!-- <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolete_uri }}/">
 Facebook
@@ -27,8 +60,90 @@ Twitter
 <a href='https://plus.google.com/share?url=http://codingforentrepreneurs.com'>Google+</a>
  -->
 
- <div class="fb-comments" data-href="{{ request.build_absolute_uri }} data-numposts="5"></div>
+<!--  <div class="fb-comments" data-href="{{ request.build_absolute_uri }} data-numposts="5"></div> -->
 
 </div>
+<div class="col-md-3">.col-md-4
+</div>
+</div>
+</div>
+<h1>Latest Properties</h1>
 
+
+<div class="row">
+{% for obj in object_list %}
+  <div class="col-sm-6 col-md-4">
+    <div class="card booking-card">
+      <div class="view overlay">
+
+
+  <div class="thumbnail">
+    {% if obj.image %}
+        <img src="{{ obj.image.url }}" class="img-responsive" width="408" height="250" />
+    {% endif %}
+   <div class="price">
+        {{ obj.price }}
+    </div>
+
+
+    </div>
+  <div class="caption">
+      <div class="card-body">
+
+
+        {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
+    <h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
+
+      <!-- <small>{{ obj.timestamp|timesince }} ago</small></h3> -->
+    <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
+      <li class="list-inline-item mr-0">
+        <div class="chip chip-md primary-color white-text" style="border-radius: 26px; padding: 5px;font-size: 15px; 
+    font-weight: 500;">For {{ obj.catagories }}</div>
+      </li>
+      <li class="list-inline-item mr-0">
+      <div class="chip danger-color white-text" style="border-radius: 26px; padding: 5px; font-size: 15px; 
+    font-weight: 500;">
+            {{ obj.beds}} Bedrooms</div>
+      </li>
+      <li class="list-inline-item mr-0">
+        <div class="chip chip-md success-color white-text" style="border-radius: 26px; padding: 5px; font-size: 15px; 
+    font-weight: 500;">{{ obj.bath }} Bathrooms</div>
+      </li>
+    
+    </ul>
+  
+    <p class="card-text">{{ obj.content|linebreaks|truncatechars:100 }}</p>
+    <p><a href='{{ obj.get_obsolute_url }}' class="btn btn-primary" role="button">View</a></p>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<!-- {% cycle "" "</div> <div class='row'>" %} -->
+
+ 
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ object_list.previous_page_number }} {% if request.GET.q %} &q={{ request.GET.q }} {% endif %}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+            <a href="?page={{ object_list.paginator.num_pages }} {% if request.GET.q %} &q={{ request.GET.q }} {% endif %}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+
+
+
+</div>
+</div>
 {% endblock content %}
