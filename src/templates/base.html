@@ -14,9 +14,11 @@
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 <!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"> -->
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/css/mdb.min.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
 
 <!-- 	<link rel="stylesheet" href='{% static "css/base.css" %}' />
 	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
@@ -28,11 +30,13 @@
   <!-- Your custom styles (optional) -->
   <!-- <link rel="stylesheet" href='static/css/style.css'>  -->
 
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+{% block head_extra %} {% endblock head_extra %}
+
 </head>
-<body>
-
-
-
+<body style="background-color: #EBEBEB; color: #636466;">
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0&appId=1994101844153657&autoLogAppEvents=1"></script>
 
@@ -40,33 +44,36 @@
 {% include "messages_display.html" %}
 
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark info-color">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark fixed-top" style="padding: .8rem 1rem; background-color: rgba(69, 90, 189, 0.8) ;">
+  <a class="navbar-brand" href="#"><img src="../static/Logo.jpg" class="rounded float-left" alt="..."" width="60px;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href='{% url "posts:list" %}'>
-          <i class=""></i> Home
-          <span class="sr-only">(current)</span>
+      <li class="nav-item">
+        <a class="nav-link" href='{% url "posts:list" %}' style="font-weight: 300;
+          font-size: 1.3em">
+          <i class="fas fa-house-damage"></i> Home
         </a>
       </li>
     <li class="nav-item">
-        <a class="nav-link" href='{% url "posts:about" %}'>
-          <i class="fab fa-instagram"></i> About</a>
+        <a class="nav-link" href='{% url "posts:about" %}' style="font-weight: 300;
+          font-size: 1.3em">
+         <i class="fas fa-signal"></i> About</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href='{% url "posts:all" %}'>
-          <i class="fab fa-instagram"></i> Properties</a>
+        <a class="nav-link" href='{% url "posts:all" %}' style="font-weight: 300;
+          font-size: 1.3em">
+         <i class="fas fa-yen-sign"></i> Properties</a>
       </li>
   
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+          aria-haspopup="true" aria-expanded="false" style="font-weight: 300;
+          font-size: 1.3em">
           <i class="fas fa-user"></i> Profile </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
           <a class="dropdown-item" href="#">My account</a>
@@ -83,7 +90,7 @@
 
 
    <!-- Footer -->
-<footer class="page-footer font-small blue pt-4">
+<footer class="page-footer font-small  pt-5" style=" background-color: #1c2a48;">
 
   <!-- Footer Links -->
   <div class="container-fluid text-center text-md-left">
@@ -165,7 +172,8 @@
 
 </footer>
 <!-- Footer -->
-
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Bootstrap tooltips -->
@@ -174,7 +182,27 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.6/js/mdb.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.2/marked.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.6.2/marked.min.js"></script> -->
 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.8.0/ marked.min.js'></script>
+
+<script type="text/javascript">
+  $(function () {
+ $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+});
+
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".content-markdown").each(function(){
+      var content = $(this).text()
+      console.log(content)
+      var markedContent = marked(content)
+      console.log(markedContent)
+      $(this).html(markedContent)
+    })
+  })
+</script>
 </body>
 </html>

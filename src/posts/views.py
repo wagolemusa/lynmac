@@ -5,8 +5,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect, Http404
 from django.utils import timezone
 from django.db.models import Q
-from .models import Post
-from .forms import PostForm
+from .models import Post, Images
+from .forms import PostForm, ImageForm
+from django.forms import modelformset_factory
 
 # Create your views here.
 def post_list(request):
@@ -36,16 +37,27 @@ def post_list(request):
 def post_create(request):
 	if not request.user.is_staff or not request.user.is_superuser:
 		raise Http404
+	ImageFormSet = modelformset_factory(Images, form=ImageForm, extra=3)
 	form = PostForm(request.POST or None, request.FILES or None)
-	if form.is_valid():
+	formset = ImageFormSet(request.POST or None, request.FILES or None,
+                               queryset=Images.objects.none())
+	if form.is_valid() and formset.is_valid():
 		instance = form.save(commit=False)
 		instance.save()
+
+		for fx in formset.cleaned_data:
+			image = fx['image']
+			photo = Images(post=instance, image=image)
+			photo.save()
 		messages.success(request, "Successfully Created")
 		return HttpResponseRedirect(instance.get_obsolute_url())
 	else:
 		messages.error(request, "Not successfully Created")
+	form = PostForm()
+	formset = ImageFormSet(queryset=Images.objects.none())
 	content = {
-		"form": form
+		"form": form,
+		"formset": formset
 	}
 	return render (request, "post_form.html", content)
 
@@ -118,7 +130,7 @@ def property_view(request):
 			# Q(price__icontains=query)|
 			# Q(location__icontains=query)
 			).distinct()
-	paginator = Paginator(qureyset_list, 12)
+	paginator = Paginator(qureyset_list, 6)
 	page = request.GET.get('page')
 	querySet = paginator.get_page(page)
 

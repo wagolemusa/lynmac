@@ -2,35 +2,39 @@
 
 {% block content %}
 
-<div class="container">
-<br>
-<form method="GET" action="">
-<input type="text" name="q" placeholder="Search posts" value="{{ request.GET.q }}" />
-<input type="submit" value="search" />
-</form>
-<br>
+<br/><br/><br/><br/>
+<section style="background: url('../static/yu.jpg')no-repeat scroll center center / cover; padding: 3em; 
+  ">
+    <div class="container">
+      <div class="row">
+        <div class="clearfix" style="padding-left: 6em; padding-right: 6em;">
+      <div class="propty" style="color: #ffffff; font-weight: 500px;">
+      <h2 class="h2-responsive"><i class="fas fa-quote-left" aria-hidden="true"></i> Lynmac Properties <i class="fas fa-quote-right"
+            aria-hidden="true"></i></h2>
+      </div>
+      <br/>
+        <i><h2 class="h2-responsive" style="color: #fff; font-size:1.5em; letter-spacing: 2px;">Is an established Real estate firm in kenya registered in 2013.We specialize in Residential and commercial Properties in the areas of Property Management</i></h2>
+    </div>
+  </div>
+</div>
+</section>
 
+<div class="container">
 <div class="row">
 {% for obj in object_list %}
-	<div class="col-sm-6 col-md-4">
+	<div class="col-sm-6 col-md-4" style="top: -35px;">
     <div class="card booking-card">
       <div class="view overlay">
-
-
-	<div class="thumbnail">
+  <div class="thumbnail">
     {% if obj.image %}
         <img src="{{ obj.image.url }}" class="img-responsive" width="350" height="250" />
     {% endif %}
    <div class="price">
         {{ obj.price }}
     </div>
-
-
     </div>
 	<div class="caption">
       <div class="card-body">
-
-
         {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
 		<h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
 
@@ -54,8 +58,6 @@
 	
 		<p class="card-text">{{ obj.content|linebreaks|truncatechars:100 }}</p>
 		<p><a href='{{ obj.get_obsolute_url }}' class="btn btn-primary" role="button">View</a></p>
-
-
 		</div>
 	</div>
 </div>
@@ -63,12 +65,22 @@
 </div>
 <!-- {% cycle "" "</div> <div class='row'>" %} -->
 
- 
 {% endfor %}
 
+</div>
+</div>
+</section>
 
 
-<div class="pagination">
+<section class="padd z-depth-1">
+<div class="container">
+  <div class="row">
+   <div class="col">
+  <h1> Find More Properties</h1>
+  </div>
+
+<div class="col-12 col-md-auto">
+  <div class="pagination" style="font-size: 1.5em; font-weight: 500;">
     <span class="step-links">
         {% if object_list.has_previous %}
             <a href="?page=1">&laquo; first</a>
@@ -86,6 +98,13 @@
     </span>
 </div>
 </div>
+
+<div class="col col-lg-2">
+  <a href='{% url "posts:all" %}' class="btn btn-danger wrn-btn">More Properties</a>
 </div>
+
+</div>
+</div>
+</section>
 {% endblock content %}
 
