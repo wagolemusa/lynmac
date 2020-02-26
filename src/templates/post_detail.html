@@ -6,47 +6,58 @@
 {% endblock head_title %}
 
 {% block content %}
+
+<div class="navprice" style="padding-top: 7em;">
+<div class="container">
+  <div class="row">
+    <div class="col">
+          <a class="nav-link active" href="#!">{{ title }}</a>
+    </div>
+    <div class="col-12 col-md-auto">
+          <a class="nav-link" href="#!">{{ instance.price }}</a>
+    </div>
+    <div class="col col-lg-2">  
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#basicExampleModal" style="font-size: 1.2em; font-weight: 500; color: #ffffff;">
+            Contact Us
+      </button>
+        
+    </div>
+
+      </ul>
+  </div>
+  </div>
+</div>
+<br/>
 <div class="container">
 <!-- <div class="col-sm-6 col-sm-offset-3"> -->
   <div class="row">
-    <div class="col-md-9">
-
-    <h1>{{ title }}</h1>
-
+    <div class="col-md-9" style="top: -11px;">
+      <div class="card1">
      <!-- <small>{{ instance.publish }}</small></h1> -->
 
     <div class="view overlay">
 
 		{% if instance.image %}
-			<img src="{{ instance.image.url }}" class="img-responsive" width="840px" height="500px" />
+			<img src="{{ instance.image.url }}" class="img-responsive" 
+      class="img-fluid z-depth-1" width="840px" height="500px" />
 		{% endif %}
 		</div>
 
-        <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <b style="font-size: 1.3em; font-weight: 900;">Price</b>	
-            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.price }}, Ksh</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <b style="font-size: 1.3em; font-weight: 900;">Location</b>
-            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.location }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-          <b style="font-size: 1.3em; font-weight: 900;">For</b>
-            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.catagories }}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <b style="font-size: 1.3em; font-weight: 900;">Bedrooms</b>
-            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.beds}}</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-          <b style="font-size: 1.3em; font-weight: 900;">Bathroom</b>
-            <span class="badge badge-primary badge-pill" style="  font-size: 1.3em;">{{ instance.bath }}</span>
-          </li>
-        </ul>
-<br>
 
-		{{ instance.content | linebreaks }}
+  <div id="mdb-lightbox-ui"></div>
+  <div class="mdb-lightbox">
+  <div class="item">
+    {% for p in instance.images_set.all %}
+     <img src="{{ p.image.url }}" alt="placeholder" class="img-fluid z-depth-1" width="260px">
+    {% endfor %}
+  </div>
+  </div>
+
+<br>
+  
+<div class="content-markdown">
+		{{ instance.content }}
+</div>
 
 		<div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
 
@@ -61,12 +72,69 @@ Twitter
  -->
 
 <!--  <div class="fb-comments" data-href="{{ request.build_absolute_uri }} data-numposts="5"></div> -->
+</div>
+</div>
 
+<div class="col-md-3" style="top: -11px;">
+<div class="card1">
+
+   <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <b style="font-size: 1.1em; font-weight: 900;">Price</b>  
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.1em;">{{ instance.price }}, Ksh</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <b style="font-size: 1.1em; font-weight: 900;">Location</b>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.1em;">{{ instance.location }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+          <b style="font-size: 1.1em; font-weight: 900;">For</b>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.1em;">{{ instance.catagories }}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <b style="font-size: 1.1em; font-weight: 900;">Bedrooms</b>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.1em;">{{ instance.beds}}</span>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+          <b style="font-size: 1.1em; font-weight: 900;">Bathroom</b>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.1em;">{{ instance.bath }}</span>
+          </li>
+        </ul>
+    <div class="imagee">
+      <hr>
+      <h3 style="color: #ff3547!important; font-weight: 500;">Managing Agent</h3>
+      <hr>
+   <center>
+     <img class="rounded-lg" src="../static/yt.jpg" width="200" />
+     <br/><br/>
+
+     <h5 style="color: #4285f4!important;font-weight: 500;
+">JOSHNSON O. OKWAMA</h5>
+     <p style="color: #4285f4!important;
+">DIRECTOR</p>
+   </center>
+   <ul class="list-group list-group-flush">
+  <ul class="list-group">
+    <li class="list-group-item">
+    <i class="fas fa-phone-volume"></i>+254 726 681 845 +254 735 100 856
+    </li>
+    <li class="list-group-item">
+     <i class="fas fa-map-marker-alt"></i>4100, 1Chekmula Buliding 
+    <li class="list-group-item">
+      <i class="fab fa-linkedin-in"></i>3rd Floor Kisumu
+    </li>
+  </ul>
+</ul>
+
+
+    </div>
 </div>
-<div class="col-md-3">.col-md-4
 </div>
 </div>
-</div>
+
+
+<br/>
+
 <h1>Latest Properties</h1>
 
 
@@ -89,8 +157,6 @@ Twitter
     </div>
   <div class="caption">
       <div class="card-body">
-
-
         {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
     <h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
 
@@ -123,7 +189,16 @@ Twitter
 
  
 {% endfor %}
-<div class="pagination">
+</div></li></ul></ul></div>
+<section class="padd z-depth-1">
+<div class="container">
+  <div class="row">
+   <div class="col">
+  <h1> Find More Properties</h1>
+  </div>
+
+<div class="col-12 col-md-auto">
+  <div class="pagination" style="font-size: 1.5em; font-weight: 500;">
     <span class="step-links">
         {% if object_list.has_previous %}
             <a href="?page=1">&laquo; first</a>
@@ -142,8 +217,49 @@ Twitter
 </div>
 </div>
 
-
+<div class="col col-lg-2">
+  <a href='{% url "posts:all" %}' class="btn btn-danger wrn-btn">More Properties</a>
+</div>
 
 </div>
 </div>
+</section>
+
+
+<!-- Modal -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CONTACT US</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     <ul class="list-group list-group-flush">
+  <ul class="list-group">
+    <li class="list-group-item">
+    <i class="fas fa-phone-volume"></i>+254 726 681 845 &nbsp;+254 735 100 856
+    </li>
+      <li class="list-group-item">
+      <i class="fab fa-linkedin-in"></i>info@lynmac.co.ke
+    </li>
+    <li class="list-group-item">
+     <i class="fas fa-map-marker-alt"></i>4100, 1Chekmula Buliding
+    </li>
+    <li class="list-group-item">
+      <i class="fab fa-linkedin-in"></i>3rd Floor Kisumu
+    </li>
+  </ul>
+</ul>
+ 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thanks</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div></li></ul></ul></div></div></div></div></div>
 {% endblock content %}
