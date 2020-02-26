@@ -1,7 +1,6 @@
-h1{
-	color: blue;
+body{
+	background-color: #EBEBEB;
 }
-
 
 .price{
 	font-size: 1.5em;
@@ -16,3 +15,131 @@ h1{
   /* font-weight: 70; */
   /* line-height: 1; */
 }
+
+.item{
+	left: 0;
+	top: 0;
+	position: relative;
+	overflow: hidden;
+	/*margin-top:50px;			*/
+}
+.item img{
+	-webkit-transition: 0.6s ease;
+	transition: 0.6s ease;
+}
+.item img:hover{
+	-webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.img-thumbnail{
+	border:0px;
+	border-radius:0px;
+}
+
+.card1{
+  background-color: #fff;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+
+}
+
+.navprice{
+  padding: 0.3rem 1rem;
+  box-shadow: 0 5px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  background-color: #fff !important;
+}
+
+
+.navprice a{
+font-size: 2em; 
+color: #4285f4!important;
+font-weight: 500;
+    
+}
+
+.imagee img{
+	 text-align: center;
+}
+
+.imagee h5{
+	color: #4285f4;
+}
+
+.imagee i{
+  color: #ff3547!important;
+  font-size: 2em;
+  padding-right: 15px;
+}
+
+.imagee li{
+	font-size: 1.1em;
+}
+
+.navbar {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: .10rem 1rem;
+}
+
+.service {
+	padding: 3em;
+	font-size: 40px;
+}
+
+.about {
+	padding: 3em;
+	background: url('../static/yu.jpg')no-repeat scroll center center / cover;
+}
+
+.propty h2{
+	font-size: 3em;
+	color: #ffffff;
+}
+
+/*search box css start here*/
+
+.search-sec b{
+	color: #ffffff;
+}
+
+
+.search-slt{
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius:0;
+}
+.wrn-btn{
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    
+}
+@media (min-width: 992px){
+    .search-sec{
+        position: relative;
+        background: rgba(26, 70, 104, 0.51);
+    }
+}
+
+@media (max-width: 992px){
+    .search-sec h1{
+        font-size: 11px;
+    }
+}
+
+

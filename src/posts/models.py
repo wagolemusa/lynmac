@@ -16,14 +16,14 @@ def upload_location(instance, filename):
 class Post(models.Model):
 	title = models.CharField(max_length=120)
 	slug = models.SlugField(unique=True)
+	height_field = models.IntegerField(default=0)
+	width_field = models.IntegerField(default=0)
+	content = models.TextField()
 	image = models.ImageField(upload_to="upload_location",
 		null=True,
 		blank=True, 
 		width_field="width_field",
 		height_field="height_field")
-	height_field = models.IntegerField(default=0)
-	width_field = models.IntegerField(default=0)
-	content = models.TextField()
 	price = models.IntegerField()
 	location = models.CharField(max_length=120)
 	catagories = models.CharField(max_length=120)
@@ -64,3 +64,13 @@ def pre_save_post_receiver(sender, instance, *args, **kwargs):
 	if not instance.slug:
 		instance.slug = create_slug(instance)
 pre_save.connect(pre_save_post_receiver, sender=Post)
+
+
+class Images(models.Model):
+	post = models.ForeignKey(Post,on_delete=models.CASCADE,)
+	image = models.ImageField(upload_to="upload_location",
+		null=True,
+		blank=True)
+
+	def __str__(self):
+		return self.post.title + "Image"
