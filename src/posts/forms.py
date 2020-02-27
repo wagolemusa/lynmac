@@ -6,6 +6,25 @@ from .models import Post, Images
 
 
 class PostForm(forms.ModelForm):
+	title = forms.CharField(label='Title', 
+                           max_length=100,
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+	price = forms.CharField(label='Price', 
+                           max_length=100,
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+	location = forms.CharField(label='Location', 
+                           max_length=100,
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+	catagories = forms.CharField(label='Catagories', 
+                           max_length=100,
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+	beds = forms.CharField(label='Beds', 
+                           max_length=100,
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+	bath = forms.CharField(label='Bath', 
+                           max_length=100,
+                           widget=forms.TextInput(attrs={'class': 'form-control'}))
+
 	# content = forms.CharField(widget=PagedownWidget)
 	publish = forms.DateField(widget=forms.SelectDateWidget)
 	class Meta:

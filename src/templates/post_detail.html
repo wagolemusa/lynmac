@@ -28,11 +28,13 @@
   </div>
 </div>
 <br/>
+<section>
 <div class="container">
 <!-- <div class="col-sm-6 col-sm-offset-3"> -->
   <div class="row">
     <div class="col-md-9" style="top: -11px;">
-      <div class="card1">
+      <div class="card">
+      <div class="card-body">
      <!-- <small>{{ instance.publish }}</small></h1> -->
 
     <div class="view overlay">
@@ -48,7 +50,7 @@
   <div class="mdb-lightbox">
   <div class="item">
     {% for p in instance.images_set.all %}
-     <img src="{{ p.image.url }}" alt="placeholder" class="img-fluid z-depth-1" width="260px">
+     <img src="{{ p.image.url }}" alt="placeholder" class="img-fluid z-depth-1" width="250px">
     {% endfor %}
   </div>
   </div>
@@ -74,10 +76,10 @@ Twitter
 <!--  <div class="fb-comments" data-href="{{ request.build_absolute_uri }} data-numposts="5"></div> -->
 </div>
 </div>
-
+</div>
 <div class="col-md-3" style="top: -11px;">
-<div class="card1">
-
+<div class="card">
+<div class="card-body">
    <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <b style="font-size: 1.1em; font-weight: 900;">Price</b>  
@@ -125,38 +127,38 @@ Twitter
     </li>
   </ul>
 </ul>
-
-
-    </div>
 </div>
 </div>
 </div>
-
-
+</div>
 <br/>
-
-<h1>Latest Properties</h1>
-
+</li></ul></ul></div></div>
+<section class="last">
+  <div class="container">
+    <h1>Latest Properties</h1>
+  </div>
+</section>
 
 <div class="row">
 {% for obj in object_list %}
-  <div class="col-sm-6 col-md-4">
+  <div class="col-md-3">
     <div class="card booking-card">
       <div class="view overlay">
 
 
   <div class="thumbnail">
     {% if obj.image %}
-        <img src="{{ obj.image.url }}" class="img-responsive" width="408" height="250" />
+        <img src="{{ obj.image.url }}" class="img-responsive" width="300" height="250" />
     {% endif %}
-   <div class="price">
-        {{ obj.price }}
-    </div>
 
 
     </div>
   <div class="caption">
       <div class="card-body">
+        <div class="price">
+        {{ obj.price }}, Ksh
+    </div>
+
         {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
     <h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
 
@@ -187,9 +189,8 @@ Twitter
 </div>
 <!-- {% cycle "" "</div> <div class='row'>" %} -->
 
- 
 {% endfor %}
-</div></li></ul></ul></div>
+</div></li></ul></ul></div></div></div></section>
 <section class="padd z-depth-1">
 <div class="container">
   <div class="row">
@@ -246,15 +247,25 @@ Twitter
       <li class="list-group-item">
       <i class="fab fa-linkedin-in"></i>info@lynmac.co.ke
     </li>
+       <li class="list-group-item">
+      <i class="fab fa-linkedin-in"></i>lynmacproperties@gmail.com
+    </li>
+    <h1 style="color: #0d47a1; font-size: 1.5em;">Head Office</h1>
     <li class="list-group-item">
      <i class="fas fa-map-marker-alt"></i>4100, 1Chekmula Buliding
     </li>
     <li class="list-group-item">
       <i class="fab fa-linkedin-in"></i>3rd Floor Kisumu
     </li>
+    <h1 style="color: #0d47a1; font-size: 1.5em;">Branch Office</h1>
+      <li class="list-group-item">
+     <i class="fas fa-map-marker-alt"></i>Lynmac Bd, Mamboleo Mkt
+    </li>
+      <li class="list-group-item">
+     <i class="fas fa-map-marker-alt"></i>P.O.Box 489-40100
+    </li>
   </ul>
 </ul>
- 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Thanks</button>
       </div>

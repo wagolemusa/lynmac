@@ -71,7 +71,7 @@ def post_detail(request, id=None):
 	qureyset_list = Post.objects.active()#.order_by("-timestamp")
 	if request.user.is_staff or request.user.is_superuser:
 		qureyset_list = Post.objects.all()
-	paginator = Paginator(qureyset_list, 3)
+	paginator = Paginator(qureyset_list, 4)
 	page = request.GET.get('page')
 	querySet = paginator.get_page(page)
 

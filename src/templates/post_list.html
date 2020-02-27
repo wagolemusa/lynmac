@@ -65,14 +65,15 @@
     {% if obj.image %}
         <img src="{{ obj.image.url }}" class="img-responsive" width="350" height="250" />
     {% endif %}
-   <div class="price">
-        {{ obj.price }}
-    </div>
+  
 
 
     </div>
 	<div class="caption">
       <div class="card-body">
+       <div class="price">
+        {{ obj.price }}, Ksh
+    </div>
         {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
 		<h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
 
@@ -196,7 +197,7 @@ All Cases of Insurance
           <div class="single-team">
             <img src="../static/team3.jpg" width="200" alt=""/> 
             <div class="team-hover">
-              <h4>john doe <span>web developer</span></h4>
+              <h4>john doe <span>Social Media Marketer</span></h4>
           <!-- Facebook-->
           <a type="button" class="btn-floating btn-sm mx-1 mb-0 btn-fb">
           <i class="fab fa-facebook-f"></i>
@@ -216,7 +217,7 @@ All Cases of Insurance
           <div class="single-team">
             <img src="../static/yt.jpg" width="200" alt=""/> 
             <div class="team-hover">
-              <h4>john doe <span>web developer</span></h4>
+              <h4>JOSHNSON O. OKWAMA<span>Director</span></h4>
           <!-- Facebook-->
           <a type="button" class="btn-floating btn-sm mx-1 mb-0 btn-fb">
             <i class="fab fa-facebook-f"></i>
@@ -236,7 +237,7 @@ All Cases of Insurance
           <div class="single-team">
             <img src="../static/jv.jpg" width="200" alt=""/>
             <div class="team-hover">
-              <h4>john doe <span>web developer</span></h4>
+              <h4>LORNET A.ANYANGO<span>Operation Manager</span></h4>
                 <!-- Facebook-->
                 <a type="button" class="btn-floating btn-sm mx-1 mb-0 btn-fb">
                   <i class="fab fa-facebook-f"></i>

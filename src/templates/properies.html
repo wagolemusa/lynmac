@@ -29,12 +29,15 @@
     {% if obj.image %}
         <img src="{{ obj.image.url }}" class="img-responsive" width="350" height="250" />
     {% endif %}
-   <div class="price">
-        {{ obj.price }}
-    </div>
+
     </div>
 	<div class="caption">
       <div class="card-body">
+
+      <div class="price">
+        {{ obj.price }}, Ksh
+    </div>
+
         {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
 		<h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
 

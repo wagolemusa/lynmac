@@ -74,3 +74,6 @@ class Images(models.Model):
 
 	def __str__(self):
 		return self.post.title + "Image"
+
+
+# reverse('admin:index')

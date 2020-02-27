@@ -8,10 +8,12 @@
  
 
 {% block content %}
+
+<br/><br/><br/>
 <div class="container">
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-6 col-sm-offset-6">
 <h1>Create Properties</h1>
-<form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+<form method="POST" class="post-form" action="" enctype="multipart/form-data">{% csrf_token %}
 {{ form.as_p }} 
 {{ formset.as_table }}
 
