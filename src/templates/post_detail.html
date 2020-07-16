@@ -7,14 +7,14 @@
 
 {% block content %}
 
-<div class="navprice" style="padding-top: 7em;">
+<div class="navprice" style="padding-top: 6em;">
 <div class="container">
   <div class="row">
     <div class="col">
           <a class="nav-link active" href="#!">{{ title }}</a>
     </div>
     <div class="col-12 col-md-auto">
-          <a class="nav-link" href="#!">{{ instance.price }}</a>
+          <a class="nav-link" href="#!">KSH {{ instance.price }} /=</a>
     </div>
     <div class="col col-lg-2">  
       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#basicExampleModal" style="font-size: 1.2em; font-weight: 500; color: #ffffff;">
@@ -29,7 +29,7 @@
 </div>
 <br/>
 <section>
-<div class="container">
+<div class="container-fluid">
 <!-- <div class="col-sm-6 col-sm-offset-3"> -->
   <div class="row">
     <div class="col-md-9" style="top: -11px;">
@@ -83,7 +83,7 @@ Twitter
    <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <b style="font-size: 1.1em; font-weight: 900;">Price</b>  
-            <span class="badge badge-primary badge-pill" style="  font-size: 1.1em;">{{ instance.price }}, Ksh</span>
+            <span class="badge badge-primary badge-pill" style="  font-size: 1.1em;">Ksh {{ instance.price }} /=</span>
           </li>
           <li class="list-group-item d-flex justify-content-between align-items-center">
             <b style="font-size: 1.1em; font-weight: 900;">Location</b>
@@ -104,16 +104,16 @@ Twitter
         </ul>
     <div class="imagee">
       <hr>
-      <h3 style="color: #ff3547!important; font-weight: 500;">Managing Agent</h3>
+      <h4 style="color: #ff3547!important; font-weight: 600;">Managing Agent</h4>
       <hr>
    <center>
      <img class="rounded-lg" src="../static/yt.jpg" width="200" />
      <br/><br/>
 
-     <h5 style="color: #4285f4!important;font-weight: 500;
+     <h5 style="color: #4285f4!important;font-weight: 600; font-size: 18px;
 ">JOSHNSON O. OKWAMA</h5>
      <p style="color: #4285f4!important;
-">DIRECTOR</p>
+ font-weight: 600; font-style: 15px;">DIRECTOR</p>
    </center>
    <ul class="list-group list-group-flush">
   <ul class="list-group">
@@ -135,71 +135,85 @@ Twitter
 </li></ul></ul></div></div>
 <section class="last">
   <div class="container">
-    <h1>Latest Properties</h1>
+    <h1 style="font-weight: 600; font-size: 30px;">Latest Properties</h1>
   </div>
 </section>
 
-<div class="row">
+<section>
+<div class="container-fluid">
+    <div class="row">
 {% for obj in object_list %}
-  <div class="col-md-3">
-    <div class="card booking-card">
+  <div class="col-sm-6 col-md-3" style="top: -25px;">
+    <div class="card"> 
       <div class="view overlay">
-
-
   <div class="thumbnail">
     {% if obj.image %}
-        <img src="{{ obj.image.url }}" class="img-responsive" width="300" height="250" />
+        <img src="{{ obj.image.url }}" class="img-responsive" width="350" height="250" />
+
+        <a href='{{ obj.get_obsolute_url }}'>
+          <div class="mask rgba-white-slight"></div>
+        </a>
     {% endif %}
-
-
     </div>
+     
+     
+    
   <div class="caption">
       <div class="card-body">
-        <div class="price">
-        {{ obj.price }}, Ksh
-    </div>
-
+      <div class="price">
+        <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
+      <li class="list-inline-item mr-0">
+        <span>KSH</span>  {{ obj.price }}
+        </li>
+        <li class="list-inline-item mr-0">
+        <i class="fas fa-map-marker-alt"></i> {{ obj.location }}
+        </li>
+        </ul>
+</div>
+     <hr>
         {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
-    <h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
+    <h5 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h5> 
 
       <!-- <small>{{ obj.timestamp|timesince }} ago</small></h3> -->
+      <hr>
     <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
       <li class="list-inline-item mr-0">
-        <div class="chip chip-md primary-color white-text" style="border-radius: 26px; padding: 5px;font-size: 15px; 
-    font-weight: 500;">For {{ obj.catagories }}</div>
+        
+    <b style="font-weight: 600; font-size: 16px;">For</b> {{ obj.catagories }}
       </li>
-      <li class="list-inline-item mr-0">
-      <div class="chip danger-color white-text" style="border-radius: 26px; padding: 5px; font-size: 15px; 
-    font-weight: 500;">
-            {{ obj.beds}} Bedrooms</div>
+      |&nbsp;<li class="list-inline-item mr-0">
+      
+          <b style="font-weight: 600; font-size: 16px;">{{ obj.beds}}</b> Beds
       </li>
-      <li class="list-inline-item mr-0">
-        <div class="chip chip-md success-color white-text" style="border-radius: 26px; padding: 5px; font-size: 15px; 
-    font-weight: 500;">{{ obj.bath }} Bathrooms</div>
+      |<li class="list-inline-item mr-0">
+    <b style="font-weight: 600; font-size: 16px;">{{ obj.bath }} </b> Bathrooms
       </li>
     
     </ul>
   
-    <p class="card-text">{{ obj.content|linebreaks|truncatechars:100 }}</p>
-    <p><a href='{{ obj.get_obsolute_url }}' class="btn btn-primary" role="button">View</a></p>
+<!--    <a href='{{ obj.get_obsolute_url }}' class="btn btn-primary" role="button">View</a></p>
+ -->
+
     </div>
   </div>
 </div>
 </div>
 </div>
 <!-- {% cycle "" "</div> <div class='row'>" %} -->
-
+ 
 {% endfor %}
+</div>
+</div>
 </div></li></ul></ul></div></div></div></section>
 <section class="padd z-depth-1">
 <div class="container">
   <div class="row">
    <div class="col">
-  <h1> Find More Properties</h1>
+  <h3> Find More Properties</h3>
   </div>
 
 <div class="col-12 col-md-auto">
-  <div class="pagination" style="font-size: 1.5em; font-weight: 500;">
+  <div class="pagination" style="font-size: 1.2em; font-weight: 500;">
     <span class="step-links">
         {% if object_list.has_previous %}
             <a href="?page=1">&laquo; first</a>

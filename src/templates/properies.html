@@ -19,57 +19,69 @@
 </div>
 </section>
 
-<div class="container">
-<div class="row">
+<section>
+<div class="container-fluid">
+    <div class="row">
 {% for obj in object_list %}
-	<div class="col-sm-6 col-md-4" style="top: -35px;">
-    <div class="card booking-card">
+  <div class="col-sm-6 col-md-3" style="top: -25px;">
+    <div class="card"> 
       <div class="view overlay">
   <div class="thumbnail">
     {% if obj.image %}
         <img src="{{ obj.image.url }}" class="img-responsive" width="350" height="250" />
+
+        <a href='{{ obj.get_obsolute_url }}'>
+          <div class="mask rgba-white-slight"></div>
+        </a>
     {% endif %}
-
     </div>
-	<div class="caption">
+     
+     
+    
+  <div class="caption">
       <div class="card-body">
-
       <div class="price">
-        {{ obj.price }}, Ksh
-    </div>
-
+        <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
+      <li class="list-inline-item mr-0">
+        <span>KSH</span>  {{ obj.price }}
+        </li>
+        <li class="list-inline-item mr-0">
+        <i class="fas fa-map-marker-alt"></i> {{ obj.location }}
+        </li>
+        </ul>
+</div>
+     <hr>
         {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
-		<h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
+    <h5 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h5> 
 
-			<!-- <small>{{ obj.timestamp|timesince }} ago</small></h3> -->
+      <!-- <small>{{ obj.timestamp|timesince }} ago</small></h3> -->
+      <hr>
     <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
       <li class="list-inline-item mr-0">
-        <div class="chip chip-md primary-color white-text" style="border-radius: 26px; padding: 5px;font-size: 15px; 
-    font-weight: 500;">For {{ obj.catagories }}</div>
+        
+    <b style="font-weight: 600; font-size: 16px;">For</b> {{ obj.catagories }}
       </li>
-      <li class="list-inline-item mr-0">
-      <div class="chip danger-color white-text" style="border-radius: 26px; padding: 5px; font-size: 15px; 
-    font-weight: 500;">
-            {{ obj.beds}} Bedrooms</div>
+      |&nbsp;<li class="list-inline-item mr-0">
+      
+          <b style="font-weight: 600; font-size: 16px;">{{ obj.beds}}</b> Beds
       </li>
-      <li class="list-inline-item mr-0">
-        <div class="chip chip-md success-color white-text" style="border-radius: 26px; padding: 5px; font-size: 15px; 
-    font-weight: 500;">{{ obj.bath }} Bathrooms</div>
+      |<li class="list-inline-item mr-0">
+    <b style="font-weight: 600; font-size: 16px;">{{ obj.bath }} </b> Bathrooms
       </li>
     
     </ul>
-	
-		<p class="card-text">{{ obj.content|linebreaks|truncatechars:100 }}</p>
-		<p><a href='{{ obj.get_obsolute_url }}' class="btn btn-primary" role="button">View</a></p>
-		</div>
-	</div>
+  
+<!--    <a href='{{ obj.get_obsolute_url }}' class="btn btn-primary" role="button">View</a></p>
+ -->
+
+    </div>
+  </div>
 </div>
 </div>
 </div>
 <!-- {% cycle "" "</div> <div class='row'>" %} -->
-
+ 
 {% endfor %}
-
 </div>
 </div>
 </section>
