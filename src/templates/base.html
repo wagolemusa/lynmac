@@ -1,5 +1,6 @@
 
 {% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,7 +45,7 @@
 {% include "messages_display.html" %}
 
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark fixed-top" style="padding: .8rem 1rem; background-color: rgba(69, 90, 189, 0.8) ;">
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark fixed-top" style="padding: .5rem 1rem; background-color: #1a237e;">
   <a class="navbar-brand" href='{% url "posts:list" %}'><img src="../static/Logo.jpg" class="rounded float-left" alt="..."" width="60px;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-4"
     aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,26 +54,26 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href='{% url "posts:list" %}' style="font-weight: 300;
+        <a class="nav-link" href='{% url "posts:list" %}' style="font-weight: 600;
           font-size: 1.3em">
           <i class="fas fa-house-damage"></i> Home
         </a>
       </li>
     <li class="nav-item">
-        <a class="nav-link" href='{% url "posts:about" %}' style="font-weight: 300;
-          font-size: 1.3em">
+        <a class="nav-link" href='{% url "posts:about" %}' style="font-weight: 600;
+          font-size: 1.1em">
          <i class="fas fa-signal"></i> About</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href='{% url "posts:all" %}' style="font-weight: 300;
-          font-size: 1.3em">
+        <a class="nav-link" href='{% url "posts:all" %}' style="font-weight: 600;
+          font-size: 1.1em">
          <i class="fas fa-yen-sign"></i> Properties</a>
       </li>
 
          <li class="nav-item">
-        <a class="nav-link" href='{% url "admin:index" %}' style="font-weight: 300;
-          font-size: 1.3em">
+        <a class="nav-link" href='{% url "admin:index" %}' style="font-weight: 600;
+          font-size: 1.1em">
          <i class="fas fa-user"></i> Login</a>
       </li>
 

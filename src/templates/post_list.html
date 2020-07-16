@@ -30,9 +30,9 @@
 <section class="search-sec" style="
     top: 0px;
     padding: 1em;
-    background-color: #1c2a48;
+    background-color: #283593;
     color: #ffffff;
-    font-size: 2.4em;
+    font-size: 1.5em;
     ">
     <div class="container">
     <b>Think of Buying, Selling or Renting a property</b><br/>
@@ -53,51 +53,62 @@
       </form>
       </div>                   
     </div>
+    <br>
 </section>
 <section>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
 {% for obj in object_list %}
-	<div class="col-sm-6 col-md-4" style="top: -25px;">
+	<div class="col-sm-6 col-md-3" style="top: -25px;">
     <div class="card"> 
       <div class="view overlay">
 	<div class="thumbnail">
     {% if obj.image %}
         <img src="{{ obj.image.url }}" class="img-responsive" width="350" height="250" />
+
+        <a href='{{ obj.get_obsolute_url }}'>
+          <div class="mask rgba-white-slight"></div>
+        </a>
     {% endif %}
-  
-
-
     </div>
+     
+     
+    
 	<div class="caption">
       <div class="card-body">
-       <div class="price">
-        {{ obj.price }}, Ksh
-    </div>
+      <div class="price">
+        <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
+      <li class="list-inline-item mr-0">
+        <span>KSH</span>  {{ obj.price }}
+        </li>
+        <li class="list-inline-item mr-0">
+        <i class="fas fa-map-marker-alt"></i> {{ obj.location }}
+        </li>
+        </ul>
+</div>
+     <hr>
         {% if obj.draft %}<h3>Only Staf: Draft</h3>{% endif %}{% if obj.publish > today %}<h3>Future Post</h3>{% endif %}
-		<h3 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h3> 
+		<h5 class="card-title font-weight-bold"><a href='{{ obj.get_obsolute_url }}'>{{ obj.title }}</a></h5> 
 
 			<!-- <small>{{ obj.timestamp|timesince }} ago</small></h3> -->
+      <hr>
     <ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
       <li class="list-inline-item mr-0">
-        <div class="chip chip-md primary-color white-text" style="border-radius: 26px; padding: 5px;font-size: 15px; 
-    font-weight: 500;">For {{ obj.catagories }}</div>
+        
+    <b style="font-weight: 600; font-size: 16px;">For</b> {{ obj.catagories }}
       </li>
-      <li class="list-inline-item mr-0">
-      <div class="chip danger-color white-text" style="border-radius: 26px; padding: 5px; font-size: 15px; 
-    font-weight: 500;">
-            {{ obj.beds}} Bedrooms</div>
+      |&nbsp;<li class="list-inline-item mr-0">
+      
+          <b style="font-weight: 600; font-size: 16px;">{{ obj.beds}}</b> Beds
       </li>
-      <li class="list-inline-item mr-0">
-        <div class="chip chip-md success-color white-text" style="border-radius: 26px; padding: 5px; font-size: 15px; 
-    font-weight: 500;">{{ obj.bath }} Bathrooms</div>
+      |<li class="list-inline-item mr-0">
+    <b style="font-weight: 600; font-size: 16px;">{{ obj.bath }} </b> Bathrooms
       </li>
     
     </ul>
 	
-		<p class="card-text">{{ obj.content|linebreaks|truncatechars:100 }}</p>
-		<p><a href='{{ obj.get_obsolute_url }}' class="btn btn-primary" role="button">View</a></p>
-
+<!-- 		<a href='{{ obj.get_obsolute_url }}' class="btn btn-primary" role="button">View</a></p>
+ -->
 
 		</div>
 	</div>
@@ -113,11 +124,11 @@
 <div class="container">
   <div class="row">
    <div class="col">
-  <h1> Find More Properties</h1>
+  <h4> Find More Properties</h4>
   </div>
 
 <div class="col-12 col-md-auto">
-  <div class="pagination" style="font-size: 1.5em; font-weight: 500;">
+  <div class="pagination" style="font-size: 1.4em; font-weight: 500;">
     <span class="step-links">
         {% if object_list.has_previous %}
             <a href="?page=1">&laquo; first</a>
@@ -146,7 +157,7 @@
 </div></div>
 
 
-<section class="musa" style=" padding: 3em;
+<section class="musa" style=" padding: 2em;
   background-color: #1c2a48;
   color: #ffffff;">
 <h2>Lynmac Properties & Insurance Agencies</h2><br/>

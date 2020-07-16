@@ -23,7 +23,7 @@ def post_list(request):
 			Q(price__icontains=query)|
 			Q(location__icontains=query)
 			).distinct()
-	paginator = Paginator(qureyset_list, 3)
+	paginator = Paginator(qureyset_list, 4)
 	page = request.GET.get('page')
 	querySet = paginator.get_page(page)
 
@@ -61,6 +61,7 @@ def post_create(request):
 	}
 	return render (request, "post_form.html", content)
 
+	
 def post_detail(request, id=None):
 	instance = get_object_or_404(Post, id=id)
 	if instance.publish > timezone.now().date() or instance.draft:
@@ -136,7 +137,6 @@ def property_view(request):
 
 	contex = {
 		"object_list": querySet,
-
 	}
 	return render(request, "properies.html", contex)
 
